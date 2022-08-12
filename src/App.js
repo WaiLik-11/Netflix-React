@@ -1,24 +1,28 @@
-import React from 'react'; 
-import jumboData from './fixtures/jumbo';
-import Jumbotron from './components/jumbotron';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Home, Browse, Signin, Signup } from './pages';
+import * as ROUTES from './constants/routes';
 
 export default function App() {
   return (
-    <Jumbotron.Container>
-      {jumboData.map((item) => (
-        <Jumbotron key={item.id} direction={item.direction}>
-          
-          <Jumbotron.Pane>
-            <Jumbotron.Title>{item.title}</Jumbotron.Title>
-            <Jumbotron.SubTitle>{item.subTitle}</Jumbotron.SubTitle>
-          </Jumbotron.Pane>
+    <Router>
+      <Routes>
+        <Route exact path="/browse" element={<Browse />} />
+      </Routes>
 
-          <Jumbotron.Pane>
-            <Jumbotron.Image src={item.image} alt={item.alt} />
-          </Jumbotron.Pane>
-        </Jumbotron>
-      ))}
-    </Jumbotron.Container>
+      <Routes>
+        <Route exact path="/signin" element={<Signin />} />
+      </Routes>
+
+      <Routes>
+        <Route exact path="/signup" element={<Signup />} />
+      </Routes>
+
+      <Routes>
+        <Route exact path={ROUTES.HOME} element={<Home />} />
+      </Routes>
+
+    </Router>
   );
 };
 
